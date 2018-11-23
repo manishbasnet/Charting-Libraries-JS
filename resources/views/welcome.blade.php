@@ -10,15 +10,21 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
-        <script src="https://code.highcharts.com/highcharts.js"></script>
+       {{-- <script src="https://code.highcharts.com/highcharts.js"></script>
 
         <script src="https://code.highcharts.com/modules/drilldown.js"></script>
 
         <script src="https://code.highcharts.com/modules/series-label.js"></script>
-        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>--}}
 
-
+        {{--Billboard script--}}
+        <script src="https://d3js.org/d3.v5.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/billboard.js/dist/billboard.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/billboard.js/dist/billboard.min.css">
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+
+
         {{--<script src="https://code.highcharts.com/stock/highstock.js"></script>
         <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
         <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>--}}
@@ -104,17 +110,10 @@
                 </div>
             </div>
         </div>--}}
-
-        <div id="container" style="height: 400px; min-width: 310px"></div>
-
+        {{--<div id="container" style="height: 400px; min-width: 310px"></div>--}}
         {{--<button id="large">Large</button>
         <button id="small">Small</button>--}}
-        <br>
-        <hr>
-
-        <div id="container2" style="height: 400px; min-width: 310px"></div>
-
-        <script>
+        {{--<script>
 
             // Bad code:
             /*var options = new Object();
@@ -501,6 +500,27 @@
 
 
 
-        </script>
+        </script>--}}
+
+
+
+        {{--Billboard.js--}}
+
+        <div id="chart"></div>
+
+    <script>
+        var chart = bb.generate({
+           bindto: "#chart",
+           data: {
+               type: "bar",
+               columns: [
+                   ["data1",30,200,100,170,150,250],
+                   ["data2",130,100,140,35, 110,50]
+               ]
+           }
+        });
+    </script>
+
+
     </body>
 </html>
