@@ -506,10 +506,12 @@
 
         {{--Billboard.js--}}
 
-        <div id="chart"></div>
+        {{--<div id="chart"></div>--}}
+
+        {{--<div id="AreaChart"></div>--}}
 
     <script>
-        var chart = bb.generate({
+        /*var chart = bb.generate({
            bindto: "#chart",
            data: {
                type: "bar",
@@ -518,7 +520,25 @@
                    ["data2",130,100,140,35, 110,50]
                ]
            }
-        });
+        });*/
+
+        // AreaChart
+        /*var chart = bb.generate({
+           data: {
+               columns: [
+                   ["data1",300, 350, 300, 0,0,0],
+                   ["data2", 130, 100, 140, 200, 150, 50]
+               ],
+               types: {
+                   data1: "area",
+                   data2: "area-spline"
+               }
+           },
+            bindto: "#AreaChart"
+        });*/
+
+
+
     </script>
 
 
