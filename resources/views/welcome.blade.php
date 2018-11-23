@@ -10,6 +10,13 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        {{--<script src="https://code.highcharts.com/stock/highstock.js"></script>
+        <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>--}}
+
         <!-- Styles -->
         <style>
             html, body {
@@ -65,7 +72,7 @@
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+        {{--<div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -90,6 +97,64 @@
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
             </div>
-        </div>
+        </div>--}}
+
+        <div id="container" style="height: 400px; min-width: 310px"></div>
+
+        <script>
+
+            // Bad code:
+            /*var options = new Object();
+
+            options.chart = new Object();
+            options.chart.renderTo = 'container';
+            options.chart.type = 'bar';
+
+            options.series = new Array();
+            options.series[0] = new Object();
+            options.series[0].name = 'Jane';
+            options.series[0].data = new Array(1, 0, 4);
+            options.series[1] = new Object();
+            options.series[1].name = 'John';
+            options.series[1].data = new Array(4, 3, 8);*/
+
+            // Good code:
+            /*var options = {
+                chart: {
+                    renderTo: 'container',
+                    type: 'bar'
+                },
+                title: {
+                    text: 'Bar Chart Title: Fruit Consumption'
+                },
+                xAxis: {
+                    categories: ['Apples','Bananas','Oranges']
+                },
+                yAxis: {
+                    title: {
+                        text: 'y-axis title: Fruit eaten'
+                    }
+                },
+                series: [{
+                    name: 'Jane',
+                    data: [1,0,4]
+                }, {
+                    name: 'John',
+                    data: [5,7,3]
+                }]
+            };*/
+            /*$(document).ready(function () {
+               var chart = new Highcharts.Chart(options);
+            });*/
+            /*$(function () {
+               var myChart =  new Highcharts.chart(options);
+            });*/
+
+
+            /* Set options globally */
+            
+
+        </script>
+
     </body>
 </html>
