@@ -12,6 +12,12 @@
 
         <script src="https://code.highcharts.com/highcharts.js"></script>
 
+        <script src="https://code.highcharts.com/modules/drilldown.js"></script>
+
+        <script src="https://code.highcharts.com/modules/series-label.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
         {{--<script src="https://code.highcharts.com/stock/highstock.js"></script>
         <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
@@ -101,6 +107,8 @@
 
         <div id="container" style="height: 400px; min-width: 310px"></div>
 
+        {{--<button id="large">Large</button>
+        <button id="small">Small</button>--}}
         <br>
         <hr>
 
@@ -157,7 +165,7 @@
 
 
             /* Set options globally */
-            $(function () {
+            /*$(function () {
                 Highcharts.setOptions({
                     chart: {
                         backgroundColor: {
@@ -204,7 +212,295 @@
                        pointInterval: 3600 * 1000 // one hour
                    }]
                 });
+            });*/
+
+
+            /*DrillDown*/
+            /*Highcharts.chart('container',{
+               chart: {
+                   type: 'column'
+               } ,
+                title: {
+                   text: 'Basic drilldown'
+                },
+                xAxis: {
+                   type: 'category'
+                },
+
+                legend: {
+                   enabled: false
+                },
+                plotOptions: {
+                   series: {
+                       borderWidth: 0,
+                       dataLabels: {
+                           enabled: false
+                       }
+                   }
+                },
+
+                series: [
+                    {
+                        name: 'Things',
+                        colorByPoint: true,
+                        data: [{
+                            name: 'Animals',
+                            y: 5,
+                            drilldown: 'animals'
+                        },{
+                            name: 'Fruits',
+                            y: 2,
+                            drilldown: 'fruits'
+                        }, {
+                            name: 'Cars',
+                            y: 4,
+                            drilldown: 'cars'
+                        }]
+                    }],
+                    drilldown: {
+                        series: [{
+                            id: 'animals',
+                            data: [
+                                ['Cats',4],
+                                ['Dogs',2],
+                                ['Cows', 1],
+                                ['Sheep', 2],
+                                ['Pigs', 1]
+                            ]
+                        },{
+                            id: 'fruits',
+                            data: [
+                                ['Apples', 4],
+                                ['Oranges', 2]
+                            ]
+                        },{
+                            id: 'cars',
+                            data: [
+                                ['Toyota', 4],
+                                ['Opel', 2],
+                                ['Volkswagen', 2]
+                            ]
+                        }]
+                    }
+            });*/
+
+            /* DrillDown Async*/
+            /*Highcharts.chart('container', {
+                chart: {
+                    type: 'column',
+                    events: {
+                        drilldown: function (e) {
+                            if(!e.seriesOptions) {
+
+                                var chart = this,
+                                    drilldowns = {
+                                    'Animals': {
+                                        name: 'Animals',
+                                        data: [
+                                            ['Cows', 2],
+                                            ['Sheep', 3],
+                                        ]
+                                    },
+                                        'Fruits' : {
+                                            name: 'Fruits',
+                                            data : [
+                                                ['Apples', 5],
+                                                ['Oranges', 7],
+                                                ['Bananas', 2]
+                                            ]
+                                        },
+                                        'Cars': {
+                                            name: 'Cars',
+                                            data: [
+                                                ['Toyota', 1],
+                                                ['Volkswagen', 2],
+                                                ['Opel', 5]
+                                            ]
+                                        }
+                                    },
+                                    series = drilldowns[e.point.name];
+
+                                // Show the loading label
+                                chart.showLoading('Simulating Ajax ...');
+
+                                setTimeout(function () {
+                                    chart.hideLoading();
+                                    chart.addSeriesAsDrilldown(e.point,series);
+                                }, 1000);
+                            }
+                        }
+                    }
+                },
+                title: {
+                    text: 'Async drilldown'
+                },
+                xAxis: {
+                    type:'category'
+                },
+                legend: {
+                    enabled: false
+                },
+
+                plotOptions: {
+                    series: {
+                        borderWidth:0,
+                        dataLabels:{
+                            enabled:true
+                        }
+                    }
+                },
+
+                series: [{
+                    name: 'Things',
+                    colorByPoint:true,
+                    data: [{
+                        name: 'Animals',
+                        y: 5,
+                        drilldown: true
+                    }, {
+                        name: 'Fruits',
+                        y: 2,
+                        drilldown: true
+                    }, {
+                        name: 'Cars',
+                        y: 4,
+                        drilldown: true
+                    }]
+                }],
+
+                drilldown: {
+                    series: []
+                }
+            });*/
+
+            /* Responsive charts */
+            /*var chart = Highcharts.chart('container', {
+               chart: {
+                   type: 'column'
+               },
+               title: {
+                   text: 'Highcharts responsive chart'
+               },
+               subtitle: {
+                   text: 'Resize the frame to see the legend position change'
+               },
+                legend: {
+                   align: 'right',
+                    verticalAlign: 'middle',
+                    layout: 'vertical'
+                },
+                xAxis: {
+                   categories: ['Apples','Oranges','Bananas']
+                },
+
+                yAxis: {
+                   title: {
+                       text: 'Amount'
+                   }
+                },
+
+                series: [{
+                   name: 'Christmas Eve',
+                    data: [1,4,3]
+                }, {
+                   name: 'Christmas Day before dinner',
+                    data: [6,4,2]
+                },{
+                   name: 'Christmas Day after dinner',
+                    data: [8,4,3]
+                }],
+
+                responsive: {
+                   rules: [{
+                       condition: {
+                           maxWidth: 500
+                       },
+                       chartOptions: {
+                           legend: {
+                               align: 'center',
+                               verticalAlign: 'bottom',
+                               layout:'horizontal'
+                           }
+                       }
+                   }]
+                }
             });
+
+            $('#small').click(function () {
+                chart.setSize(400,300);
+            });
+
+            $('#large').click(function () {
+                chart.setSize(600,300);
+            });*/
+
+
+            /* Mixed charts*/
+            /*Highcharts.chart('container', {
+               title: {
+                   text: 'Title: Combination chart'
+               },
+                xAxis: {
+                   categories: ['Apples','Oranges','Pears','Bananas','Plums']
+                },
+                labels: {
+                   items: [{
+                       html: 'Title: Total fruit consumption',
+                       style: {
+                           left: '80px',
+                           top: '18px',
+                           color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
+                       }
+                   }]
+                },
+                series: [{
+                   type: 'column',
+                    name: 'Jane',
+                    data: [3,2,1,3,4]
+                }, {
+                   type: 'column',
+                    name: 'john',
+                    data: [2,3,5,7,6]
+                }, {
+                   type: 'column',
+                    name: 'Joe',
+                    data: [4,3,3,9,0]
+                }, {
+                   type: 'spline',
+                    name: 'Average',
+                    data: [3,2.67,3,6.33,3.33],
+                    marker: {
+                       lineWidth: 2,
+                        lineColor: Highcharts.getOptions().colors[9],
+                        fillColor: 'red'
+                    }
+                }, {
+                   type: 'pie',
+                    name: 'Total consumption',
+                    data: [{
+                       name: 'Jane',
+                        y: 13,
+                        color: Highcharts.getOptions().colors[0] //jane's
+                    }, {
+                       name: 'John',
+                        y: 23,
+                        color: Highcharts.getOptions().colors[1] // John's
+                    }, {
+                       name: 'Joe',
+                        y: 19,
+                        color: Highcharts.getOptions().colors[2] // Joe's color
+                    }],
+                    center: [100,80],
+                    size: 100,
+                    showInLegend: false,
+                    dataLabels: {
+                       enabled: false
+                    }
+                }]
+            });*/
+
+
+
         </script>
     </body>
 </html>
